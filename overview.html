@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
   <div class="nav-shell">
     <div class="container">
@@ -56,24 +55,44 @@
         <h3>Sanity check (early 2000s vs recent years)</h3>
         <p class="muted">Cleaned dataset, comparing <strong>2000–2004</strong> average vs <strong>2018–2022</strong> average.</p>
 
-        <div class="metrics" role="list">
-          <div class="metric" role="listitem">
-            <div class="metric-label">Median price</div>
-            <div class="metric-value">404,792 → 1,047,750</div>
-          </div>
-          <div class="metric" role="listitem">
-            <div class="metric-label">Flip share</div>
-            <div class="metric-value">0.41% → 6.08%</div>
-          </div>
-          <div class="metric" role="listitem">
-            <div class="metric-label">Investor share</div>
-            <div class="metric-value">19.29% → 32.09%</div>
-          </div>
-          <div class="metric" role="listitem">
-            <div class="metric-label">LLC / business buyer share</div>
-            <div class="metric-value">2.83% → 13.50%</div>
-          </div>
+        <div class="sanity-image-grid" role="list" aria-label="Sanity check summary comparisons">
+          <a class="sanity-image-card" role="listitem" href="images/overview_median.png" target="_blank" rel="noreferrer">
+            <img
+              src="images/overview_median.png"
+              alt="Median price comparison card showing 2000–2004 average versus 2018–2022 average."
+              loading="lazy"
+            />
+          </a>
+
+          <a class="sanity-image-card" role="listitem" href="images/overview_flip.png" target="_blank" rel="noreferrer">
+            <img
+              src="images/overview_flip.png"
+              alt="Flip share comparison card showing 2000–2004 average versus 2018–2022 average."
+              loading="lazy"
+            />
+          </a>
+
+          <a class="sanity-image-card" role="listitem" href="images/overview_investor.png" target="_blank" rel="noreferrer">
+            <img
+              src="images/overview_investor.png"
+              alt="Investor share comparison card showing 2000–2004 average versus 2018–2022 average."
+              loading="lazy"
+            />
+          </a>
+
+          <a class="sanity-image-card" role="listitem" href="images/overview_llc.png" target="_blank" rel="noreferrer">
+            <img
+              src="images/overview_llc.png"
+              alt="LLC or business buyer share comparison card showing 2000–2004 average versus 2018–2022 average."
+              loading="lazy"
+            />
+          </a>
         </div>
+
+        <p class="muted">
+          In the cleaned sample, later years show higher investor/entity presence and higher short-horizon resale incidence. Profitability is not directly observed because the dataset does not provide a complete prior purchase price field.
+        </p>
+      </div>
 
         <p class="muted">
           In the cleaned sample, later years show higher investor/entity presence and higher short-horizon resale incidence. Profitability is not directly observed because the dataset does not provide a complete prior purchase price field.
@@ -82,7 +101,7 @@
 
       <h3 class="section-subheading">Discoveries &amp; Insights (Figures 1–12)</h3>
       <p class="muted">
-        Click any image to open the full-resolution file in a new tab. These figures document the overview phase: data structure, quality checks, baseline distributions, time trends, and first-pass neighborhood contrasts.
+        Click any image to open the full-resolution file in a new tab.
       </p>
 
       <div class="viz-grid">
@@ -96,7 +115,7 @@
               <span class="figtitle">Missingness profile (top 25 fields)</span>
             </div>
             <p>
-              The most important missingness is <em>structural</em>, not random: fields used for linked-sale analysis (e.g., <code>flip_horizon</code>, <code>month_horizon</code>, and price-difference variables) are absent for many rows because a prior transaction match is unavailable. This matters analytically because flip timing/profit results describe a linked subset of the market, not all transactions. The figure therefore functions as both a quality audit and a scope constraint for later interpretation.
+              The most important missingness are fields used for linked-sale analysis (e.g., <code>flip_horizon</code>, <code>month_horizon</code>, and price-difference variables) are absent for many rows because a prior transaction match is unavailable. This figure is thus both a quality audit and a scope constraint for later interpretation.
             </p>
           </figcaption>
         </figure>
@@ -111,7 +130,7 @@
               <span class="figtitle">Sale price is extremely right-skewed (log scale reveals structure)</span>
             </div>
             <p>
-              The cleaned sale-price distribution is strongly right-skewed: most transactions cluster in a central mass, while a long luxury tail extends far to the right. Plotting <code>log10(price)</code> makes that structure visible without letting a small number of very expensive sales flatten the rest of the market into a single bar. This is an early design decision that carries through the analysis: for housing prices, medians/quantiles and log scales are often more informative than raw means.
+              The cleaned sale-price distribution is strongly right-skewed i.e. most transactions cluster in a central mass, while a long luxury tail extends far to the right. Plotting <code>log10(price)</code> makes that structure visible without letting a small number of very expensive sales flatten the rest of the market into a single bar. This is an early design decision that carries through.
             </p>
           </figcaption>
         </figure>
@@ -186,7 +205,7 @@
               <span class="figtitle">Share of purchases by LLCs or incorporated businesses</span>
             </div>
             <p>
-              Entity-buyer share increases from low single digits in the early 2000s to persistent double-digit levels after 2010, with a visible peak around the late 2010s. This is a narrower proxy than “investor” status because it highlights organizational buyers (e.g., LLCs/corporate entities) rather than individual investors. The upward trend supports a financialization interpretation in which a larger fraction of transactions is mediated by formal business entities over time.
+              Entity-buyer share increases from low single digits in the early 2000s to persistent double-digit levels after 2010, with a visible peak around the late 2010s. This is a narrower proxy than “investor” status because it highlights organizational buyers (e.g. LLCs/corporate entities) rather than individual investors. The upward trend supports a financialization interpretation in which a larger fraction of transactions is mediated by formal business entities over time.
             </p>
           </figcaption>
         </figure>
@@ -216,7 +235,7 @@
               <span class="figtitle">Spatial density of sales transactions (hexbin, Boston bounding box)</span>
             </div>
             <p>
-              The hexbin map shows a dense central cluster of transactions and a small number of clear spatial outliers far from the main mass. As an overview figure, this is both descriptive and diagnostic: it confirms that the data are concentrated in expected urban areas while also revealing coordinates that likely need filtering or cautious treatment. I use it as a “map sanity check” before making neighborhood-level spatial claims.
+              The hexbin map shows a dense central cluster of transactions and a small number of clear spatial outliers far from the main mass. This data visualization is both descriptive and diagnostic: it confirms that the data points are concentrated in expected urban areas while also revealing coordinates that likely need filtering or cautious treatment. I use it as a “map sanity check” before making neighborhood-level spatial claims.
             </p>
           </figcaption>
         </figure>
@@ -268,11 +287,6 @@
       </div>
     </section>
 
-    <footer class="footer">
-      <p class="muted">
-        Static HTML report. Expected files: <code>style.css</code> and images in <code>images/</code>.
-      </p>
-    </footer>
   </main>
 </body>
 </html>
