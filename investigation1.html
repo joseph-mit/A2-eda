@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
   <div class="nav-shell">
     <div class="container">
@@ -42,7 +41,7 @@
     <section class="card report-section">
       <h2>Investigation</h2>
       <p class="muted">
-        This section moves from overview to question-driven analysis. I keep the figures that answer the substantive questions, but I also retain “diagnostic” views (especially Q1.4–Q1.5 and Q2.2) because they materially affect interpretation: some metrics are unstable, and some rankings are only meaningful once uncertainty is shown.
+        We move away from data wrangling, exploration and overview to investigating the questions.
       </p>
 
       <section class="subcard" id="investigation-q1">
@@ -63,6 +62,21 @@
               </div>
               <p>
                 The strongest result in the report is the regime shift after 2010: flip share rises from near-zero in the early 2000s to sustained mid-single digits, while investor purchase share moves from roughly the high-teens/low-20s into the ~30% range and entity-buyer share climbs from low single digits into persistent double digits. Because these three series move together, the pattern is much more convincing than any one proxy alone. The late-2010s peak and early-2020s pullback suggest moderation at the margin, but not a return to the early-2000s baseline.
+              </p>
+            </figcaption>
+          </figure>
+
+          <figure id="q12" class="viz">
+            <a class="viz-link" href="images/Q12.png" target="_blank" rel="noreferrer">
+              <img src="images/Q12.png" alt="Q1.2: Flip speed over time (median holding period with IQR)." loading="lazy" />
+            </a>
+            <figcaption>
+              <div class="fighead">
+                <span class="figlabel">Q1.2</span>
+                <span class="figtitle">Flip speed over time (median holding period with IQR)</span>
+              </div>
+              <p>
+                This chart tracks how long properties are typically held before resale, using the median holding period (in months) and the interquartile range (IQR) to show spread. After the very early years of the dataset, the median flip horizon generally sits in the roughly 12–18 month range, with a notable spike around the late-2000s/2010 period, suggesting that resale timing became slower and more variable during that market phase. The fairly wide IQR in many years indicates that “flipping” is not one uniform strategy, i.e. some properties are resold relatively quickly, while others are held much longer, perhaps due to renovation timelines, financing constraints, or market conditions. A key data caveat is that the first year(s) may be mechanically compressed because the transaction dataset begins in 2000, which can make early holding periods look artificially short due to left-censoring / boundary effect which truncates earlier purchase histories.
               </p>
             </figcaption>
           </figure>
@@ -130,11 +144,6 @@
       </section>
     </section>
 
-    <footer class="footer">
-      <p class="muted">
-        Static HTML report. Expected files: <code>style.css</code> and images in <code>images/</code>.
-      </p>
-    </footer>
   </main>
 </body>
 </html>
