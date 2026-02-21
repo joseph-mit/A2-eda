@@ -56,7 +56,7 @@
                 <span class="figtitle">Neighborhood contrasts: investor share vs price (size = volume; log x-axis)</span>
               </div>
               <p>
-                Among the selected high-activity neighborhoods, investor share does <em>not</em> rise monotonically with price: very expensive areas can be only moderately investor-heavy, while lower-price core areas can be just as investor-heavy or more so. The slight downward fitted line reinforces that point—price alone is not a sufficient proxy for speculative presence. Using bubble area for sales volume also matters here: Back Bay and Downtown are analytically more consequential than a small, high-priced outlier because far more transactions are involved.
+                Among the selected high-activity neighborhoods, investor share does not rise monotonically with price: very expensive areas can be only moderately investor-heavy, while lower-price core areas can be just as investor-heavy or more so. The slight downward fitted line reinforces that point, that price alone is not a sufficient proxy for speculative presence. Using bubble area for sales volume also matters here: Back Bay and Downtown are analytically more consequential than a small, high-priced outlier because far more transactions are involved.
               </p>
             </figcaption>
           </figure>
@@ -71,7 +71,7 @@
                 <span class="figtitle">Investor concentration by ZIP (ranked; uncertainty shown explicitly)</span>
               </div>
               <p>
-                This is a ranking chart, but the key analytical move is the interval display: several middle ZIPs overlap materially, so a strict “1st vs 2nd vs 3rd” reading would overstate precision. The extremes are more interpretable than the middle—some ZIPs are clearly lower-investor-share and others clearly higher—but many adjacent ranks are statistically close. Showing Wilson intervals turns the figure from a leaderboard into an uncertainty-aware comparison, which is the more honest EDA choice.
+                Here we can see that several middle ZIPs overlap materially, so a strict ranked reading would overstate precision. The extremes are more interpretable than the middle as you can see that some ZIPs are clearly lower-investor-share while others clearly higher. However, many adjacent ranks are statistically close. Showing Wilson intervals turns the figure from just a mere leaderboard into an uncertainty-aware comparison, which is the more honest EDA choice.
               </p>
             </figcaption>
           </figure>
@@ -86,7 +86,7 @@
                 <span class="figtitle">ZIP-level co-location: high prices vs flips (shaded by investor share)</span>
               </div>
               <p>
-                This three-variable view shows why a single “speculation index” would be misleading: high-price ZIPs span different flip shares, and similarly priced ZIPs can differ meaningfully in investor presence. The bubble sizes further show that some extreme points are relatively low-volume, while several mid/high-price ZIPs carry much more transactional weight. In short, speculation appears spatially clustered, but along multiple dimensions (price, churn, investor presence) that only partially overlap.
+                This three-variable view shows why a single “speculation index” would be misleading: high-price ZIPs span different flip shares, and similarly priced ZIPs can differ meaningfully in investor presence. The bubble sizes further show that some extreme points are relatively low-volume, while several mid/high-price ZIPs carry much more transactional weight. In short, speculation appears spatially clustered, but along multiple dimensions e.g. price, churn, investor presence, that only partially overlap.
               </p>
             </figcaption>
           </figure>
@@ -98,10 +98,10 @@
             <figcaption>
               <div class="fighead">
                 <span class="figlabel">Q2.4</span>
-                <span class="figtitle">Where speculation sits (ZIP centroids)</span>
+                <span class="figtitle"> ZIP centroids </span>
               </div>
               <p>
-                The centroid map makes the co-location pattern easier to read geographically: some ZIPs combine high prices (warmer colors), higher flip shares (larger markers), and above-median investor presence (outlined points), while others are high on only one or two dimensions. That is the central spatial finding for Q2—speculation is concentrated, but not in a single perfectly overlapping “hot zone.” Because these are ZIP centroids (not parcel-level locations), the map should be interpreted as a comparative regional summary rather than a fine-grained spatial density claim.
+                The centroid map makes the co-location pattern easier to read geographically: some ZIPs combine high prices (warmer colors), higher flip shares (larger markers), and above-median investor presence (outlined points), while others are high on only one or two dimensions. This figure represents the central spatial finding for Q2, that speculation is concentrated, but not in a single perfectly overlapping hot zone. Because these are ZIP centroids and not parcel-level locations, the map should be interpreted as a comparative regional summary rather than a fine-grained spatial density claim.
               </p>
             </figcaption>
           </figure>
