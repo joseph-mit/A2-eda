@@ -346,6 +346,7 @@ h3 {
   padding: 14px 14px 12px;
 }
 
+/* Old metric cards (kept in case reused elsewhere) */
 .metrics {
   display: grid;
   grid-template-columns: 1fr;
@@ -369,6 +370,38 @@ h3 {
 .metric-value {
   font-weight: 900;
   letter-spacing: -0.01em;
+}
+
+/* Sanity check image grid (new) */
+.sanity-image-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 12px 0 10px;
+}
+
+.sanity-image-card {
+  display: block;
+  text-decoration: none;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02);
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+
+.sanity-image-card:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+  border-color: rgba(22, 59, 99, 0.24);
+}
+
+.sanity-image-card img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* Figures */
@@ -435,6 +468,11 @@ figcaption {
 @media (min-width: 760px) {
   .metrics {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .sanity-image-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
   }
 
   .viz-grid {
