@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vis & Society Assignment 2 | Investigation - Q2</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="nav-shell">
+    <div class="container">
+      <nav class="section-nav" aria-label="Site navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="subtheme.html" class="nav-link">Subtheme</a>
+        <a href="questions.html" class="nav-link">Questions</a>
+        <a href="overview.html" class="nav-link">Overview</a>
+        <a href="investigation1.html" class="nav-link">Investigation - Q1</a>
+        <a href="investigation2.html" class="nav-link active" aria-current="page">Investigation - Q2</a>
+        <a href="investigation3.html" class="nav-link">Investigation - Q3</a>
+        <a href="investigation4.html" class="nav-link">Investigation - Q4</a>
+        <a href="summary.html" class="nav-link">Summary</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="kicker">Assignment 2</div>
+      <h1 class="title">Investigation - Q2</h1>
+      <p class="page-context">Vis &amp; Society Assignment 2 | Exploratory Data Analysis</p>
+      <p class="author-block">
+        <span class="author-name">Joseph Firmansyah</span><br />
+        <a href="mailto:josephfn@mit.edu">josephfn@mit.edu</a>
+      </p>
+      <hr class="header-rule" />
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="card report-section">
+      <section class="subcard" id="investigation-q2">
+        <h3>Q2 — Where is speculation concentrated, and does it co-locate with high prices?</h3>
+        <p class="question-restate">
+          Where is speculation concentrated within Boston, and does it co-locate with high prices?
+        </p>
+
+        <div class="viz-grid">
+          <figure id="q21" class="viz">
+            <a class="viz-link" href="images/Q21.png" target="_blank" rel="noreferrer">
+              <img src="images/Q21.png" alt="Q2.1: Neighborhood contrasts: investor share vs median price (log x-axis); bubble size indicates volume." loading="lazy" />
+            </a>
+            <figcaption>
+              <div class="fighead">
+                <span class="figlabel">Q2.1</span>
+                <span class="figtitle">Neighborhood contrasts: investor share vs price (size = volume; log x-axis)</span>
+              </div>
+              <p>
+                Among the selected high-activity neighborhoods, investor share does <em>not</em> rise monotonically with price: very expensive areas can be only moderately investor-heavy, while lower-price core areas can be just as investor-heavy or more so. The slight downward fitted line reinforces that point—price alone is not a sufficient proxy for speculative presence. Using bubble area for sales volume also matters here: Back Bay and Downtown are analytically more consequential than a small, high-priced outlier because far more transactions are involved.
+              </p>
+            </figcaption>
+          </figure>
+
+          <figure id="q22" class="viz">
+            <a class="viz-link" href="images/Q22.png" target="_blank" rel="noreferrer">
+              <img src="images/Q22.png" alt="Q2.2: Investor concentration by ZIP with 95% Wilson confidence intervals." loading="lazy" />
+            </a>
+            <figcaption>
+              <div class="fighead">
+                <span class="figlabel">Q2.2</span>
+                <span class="figtitle">Investor concentration by ZIP (ranked; uncertainty shown explicitly)</span>
+              </div>
+              <p>
+                This is a ranking chart, but the key analytical move is the interval display: several middle ZIPs overlap materially, so a strict “1st vs 2nd vs 3rd” reading would overstate precision. The extremes are more interpretable than the middle—some ZIPs are clearly lower-investor-share and others clearly higher—but many adjacent ranks are statistically close. Showing Wilson intervals turns the figure from a leaderboard into an uncertainty-aware comparison, which is the more honest EDA choice.
+              </p>
+            </figcaption>
+          </figure>
+
+          <figure id="q23" class="viz">
+            <a class="viz-link" href="images/Q23.png" target="_blank" rel="noreferrer">
+              <img src="images/Q23.png" alt="Q2.3: ZIP-level co-location plot: median price vs flip share, colored by investor share." loading="lazy" />
+            </a>
+            <figcaption>
+              <div class="fighead">
+                <span class="figlabel">Q2.3</span>
+                <span class="figtitle">ZIP-level co-location: high prices vs flips (shaded by investor share)</span>
+              </div>
+              <p>
+                This three-variable view shows why a single “speculation index” would be misleading: high-price ZIPs span different flip shares, and similarly priced ZIPs can differ meaningfully in investor presence. The bubble sizes further show that some extreme points are relatively low-volume, while several mid/high-price ZIPs carry much more transactional weight. In short, speculation appears spatially clustered, but along multiple dimensions (price, churn, investor presence) that only partially overlap.
+              </p>
+            </figcaption>
+          </figure>
+
+          <figure id="q24" class="viz">
+            <a class="viz-link" href="images/Q24.png" target="_blank" rel="noreferrer">
+              <img src="images/Q24.png" alt="Q2.4: Map of ZIP centroids: size indicates flip share, color indicates log median price, outline marks above-median investor share." loading="lazy" />
+            </a>
+            <figcaption>
+              <div class="fighead">
+                <span class="figlabel">Q2.4</span>
+                <span class="figtitle">Where speculation sits (ZIP centroids)</span>
+              </div>
+              <p>
+                The centroid map makes the co-location pattern easier to read geographically: some ZIPs combine high prices (warmer colors), higher flip shares (larger markers), and above-median investor presence (outlined points), while others are high on only one or two dimensions. That is the central spatial finding for Q2—speculation is concentrated, but not in a single perfectly overlapping “hot zone.” Because these are ZIP centroids (not parcel-level locations), the map should be interpreted as a comparative regional summary rather than a fine-grained spatial density claim.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+    </section>
+
+  </main>
+</body>
+</html>

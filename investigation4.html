@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vis & Society Assignment 2 | Investigation - Q4</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="nav-shell">
+    <div class="container">
+      <nav class="section-nav" aria-label="Site navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="subtheme.html" class="nav-link">Subtheme</a>
+        <a href="questions.html" class="nav-link">Questions</a>
+        <a href="overview.html" class="nav-link">Overview</a>
+        <a href="investigation1.html" class="nav-link">Investigation - Q1</a>
+        <a href="investigation2.html" class="nav-link">Investigation - Q2</a>
+        <a href="investigation3.html" class="nav-link">Investigation - Q3</a>
+        <a href="investigation4.html" class="nav-link active" aria-current="page">Investigation - Q4</a>
+        <a href="summary.html" class="nav-link">Summary</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="kicker">Assignment 2</div>
+      <h1 class="title">Investigation - Q4</h1>
+      <p class="page-context">Vis &amp; Society Assignment 2 | Exploratory Data Analysis</p>
+      <p class="author-block">
+        <span class="author-name">Joseph Firmansyah</span><br />
+        <a href="mailto:josephfn@mit.edu">josephfn@mit.edu</a>
+      </p>
+      <hr class="header-rule" />
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="card report-section">
+      <section class="subcard" id="investigation-q4">
+        <h3>Q4 — Do ownership shifts line up with transaction-dynamics shifts?</h3>
+        <p class="question-restate">
+          Are neighborhoods with the largest increases in corporate ownership and declines in owner occupancy also the neighborhoods where transaction dynamics shift most, i.e. higher flip share, higher corporate buyer share, and faster price growth?
+        </p>
+
+        <div class="viz-grid">
+          <figure id="q41" class="viz">
+            <a class="viz-link" href="images/Q41.png" target="_blank" rel="noreferrer">
+              <img src="images/Q41.png" alt="Q4.1: Neighborhood slopegraph of corporate ownership rates from 2004 to 2022." loading="lazy" />
+            </a>
+            <figcaption>
+              <div class="fighead">
+                <span class="figlabel">Q4.1</span>
+                <span class="figtitle">Corporate ownership shifts (stock): neighborhood slopegraph</span>
+              </div>
+              <p>
+                The slopegraph shows a nearly uniform directional shift: every displayed neighborhood has higher corporate ownership in 2022 than in 2004. The value of this design is that it makes direction and magnitude legible simultaneously—some neighborhoods rise modestly, while others (especially South Boston Waterfront) increase much more sharply. This establishes a strong stock-side pattern before testing whether transaction flows move in parallel.
+              </p>
+            </figcaption>
+          </figure>
+
+          <figure id="q43" class="viz">
+            <a class="viz-link" href="images/Q43.png" target="_blank" rel="noreferrer">
+              <img src="images/Q43.png" alt="Q4.3: Change in entity-buyer share versus change in flip share; color indicates price growth; size indicates volume." loading="lazy" />
+            </a>
+            <figcaption>
+              <div class="fighead">
+                <span class="figlabel">Q4.3</span>
+                <span class="figtitle">Transaction dynamics shift (flow): entity buyers vs flips</span>
+              </div>
+              <p>
+                Relative to 2004–07, every labeled neighborhood in this comparison moves into the upper-right quadrant in 2018–22: both entity-buyer share and flip share increase. That broad directional consistency is a meaningful result, because it suggests that “more corporate/entity participation” and “more resale churn” often rise together rather than as isolated phenomena. The added encodings (price growth color, volume size) also show that some of the largest shifts occur in major, high-growth markets rather than only in small neighborhoods.
+              </p>
+            </figcaption>
+          </figure>
+
+          <figure id="q44" class="viz">
+            <a class="viz-link" href="images/Q44.png" target="_blank" rel="noreferrer">
+              <img src="images/Q44.png" alt="Q4.4: Corporate ownership change (stock) versus entity-buyer share change (flow) across overlapping neighborhoods." loading="lazy" />
+            </a>
+            <figcaption>
+              <div class="fighead">
+                <span class="figlabel">Q4.4</span>
+                <span class="figtitle">Stock vs flow: do ownership shifts track entity-buyer shifts in transactions?</span>
+              </div>
+              <p>
+                The relationship is positive for several neighborhoods, but clearly not one-to-one: places like Longwood and Downtown show both stock and flow increases, while South Boston Waterfront is a notable outlier with a very large stock increase but a negative flow shift in this window. That mismatch is analytically useful, not a failure—it suggests that accumulated ownership structure (“who holds”) can diverge from recent transaction composition (“who is buying now”) because of timing, turnover rates, and neighborhood-specific development cycles. For the final project, this is exactly the kind of result that justifies joining stock and flow datasets rather than treating either one as sufficient.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+    </section>
+
+  </main>
+</body>
+</html>

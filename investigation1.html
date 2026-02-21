@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vis & Society Assignment 2 | Overview</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="nav-shell">
+    <div class="container">
+      <nav class="section-nav" aria-label="Site navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="subtheme.html" class="nav-link">Subtheme</a>
+        <a href="questions.html" class="nav-link">Questions</a>
+        <a href="overview.html" class="nav-link active" aria-current="page">Overview</a>
+        <a href="investigation1.html" class="nav-link">Investigation - Q1</a>
+        <a href="investigation2.html" class="nav-link">Investigation - Q2</a>
+        <a href="investigation3.html" class="nav-link">Investigation - Q3</a>
+        <a href="investigation4.html" class="nav-link">Investigation - Q4</a>
+        <a href="summary.html" class="nav-link">Summary</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="kicker">Assignment 2</div>
+      <h1 class="title">Overview</h1>
+      <p class="page-context">Vis &amp; Society Assignment 2 | Exploratory Data Analysis</p>
+      <p class="author-block">
+        <span class="author-name">Joseph Firmansyah</span><br />
+        <a href="mailto:josephfn@mit.edu">josephfn@mit.edu</a>
+      </p>
+      <hr class="header-rule" />
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section id="overview" class="card report-section">
+      <h2>Overview</h2>
+
+      <ul class="bullets">
+        <li>Parsed date range: <strong>2000-01-03</strong> to <strong>2022-12-30</strong>.</li>
+        <li>Transactions table: <code>A2_EDA_Residential.csv</code> has <strong>49,301</strong> rows × <strong>68</strong> columns.</li>
+        <li>ZIP → neighborhood mapping via <code>Boston_Neighborhoods_Zipcodes.csv</code> (missing labels: <strong>0.25%</strong> of rows).</li>
+        <li>Price outliers / placeholders removed to avoid distorting distribution plots.</li>
+        <li>Flip horizons missing for most rows (<strong>66.95%</strong>) because a linked prior purchase is required.</li>
+        <li><strong>23</strong> negative flip horizons excluded as invalid.</li>
+        <li>Coordinates mostly present but not always plausible (e.g., <strong>456</strong> points outside a Boston-ish bounding box).</li>
+      </ul>
+
+      <div class="callout">
+        <h3>Sanity check (early 2000s vs recent years)</h3>
+        <p class="muted">Cleaned dataset, comparing <strong>2000–2004</strong> average vs <strong>2018–2022</strong> average.</p>
+
+        <div class="metrics" role="list">
+          <div class="metric" role="listitem">
+            <div class="metric-label">Median price</div>
+            <div class="metric-value">404,792 → 1,047,750</div>
+          </div>
+          <div class="metric" role="listitem">
+            <div class="metric-label">Flip share</div>
+            <div class="metric-value">0.41% → 6.08%</div>
+          </div>
+          <div class="metric" role="listitem">
+            <div class="metric-label">Investor share</div>
+            <div class="metric-value">19.29% → 32.09%</div>
+          </div>
+          <div class="metric" role="listitem">
+            <div class="metric-label">LLC / business buyer share</div>
+            <div class="metric-value">2.83% → 13.50%</div>
+          </div>
+        </div>
+
+        <p class="muted">
+          In the cleaned sample, later years show higher investor/entity presence and higher short-horizon resale incidence. Profitability is not directly observed because the dataset does not provide a complete prior purchase price field.
+        </p>
+      </div>
+
+      <h3 class="section-subheading">Discoveries &amp; Insights (Figures 1–12)</h3>
+      <p class="muted">
+        Click any image to open the full-resolution file in a new tab. These figures document the overview phase: data structure, quality checks, baseline distributions, time trends, and first-pass neighborhood contrasts.
+      </p>
+
+      <div class="viz-grid">
+        <figure id="fig1" class="viz">
+          <a class="viz-link" href="images/Figure1.png" target="_blank" rel="noreferrer">
+            <img src="images/Figure1.png" alt="Figure 1: Missingness profile (top 25 fields)." loading="lazy" />
+          </a>
+          <figcaption>
+            <div class="fighead">
+              <span class="figlabel">Figure 1</span>
+              <span class="figtitle">Missingness profile (top 25 fields)</span>
+            </div>
+            <p>
+              The most important missingness is <em>structural</em>, not random: fields used for linked-sale analysis (e.g., <code>flip_horizon</code>, <code>month_horizon</code>, and price-difference variables) are absent for many rows because a prior transaction match is unavailable. This matters analytically because flip timing/profit results describe a linked subset of the market, not all transactions. The figure therefore functions as both a quality audit and a scope constraint for later interpretation.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure id="fig2" class="viz">
+          <a class="viz-link" href="images/Figure2.png" target="_blank" rel="noreferrer">
+            <img src="images/Figure2.png" alt="Figure 2: Sale price is extremely right-skewed (log scale reveals structure)." loading="lazy" />
+          </a>
+          <figcaption>
+            <div class="fighead">
+              <span class="figlabel">Figure 2</span>
+              <span class="figtitle">Sale price is extremely right-skewed (log scale reveals structure)</span>
+            </div>
+            <p>
+              The cleaned sale-price distribution is strongly right-skewed: most transactions cluster in a central mass, while a long luxury tail extends far to the right. Plotting <code>log10(price)</code> makes that structure visible without letting a small number of very expensive sales flatten the rest of the market into a single bar. This is an early design decision that carries through the analysis: for housing prices, medians/quantiles and log scales are often more informative than raw means.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure id="fig3" class="viz">
+          <a class="viz-link" href="images/Figure3.png" target="_blank" rel="noreferrer">
+            <img src="images/Figure3.png" alt="Figure 3: Transaction volume over time (gut check for cycles)." loading="lazy" />
+          </a>
+          <figcaption>
+            <div class="fighead">
+              <span class="figlabel">Figure 3</span>
+              <span class="figtitle">Transaction volume over time (gut check for cycles)</span>
+            </div>
+            <p>
+              Annual transaction counts show strong cyclical variation, including a mid-2000s peak, a sharp post-crisis trough around 2009, and another dip around 2020. This is a crucial denominator check: any “share” metric (investor share, flip share, entity-buyer share) can look volatile when total volume is collapsing or rebounding. I use this chart as context for interpreting later rate-based trends rather than reading those trends in isolation.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure id="fig4" class="viz">
+          <a class="viz-link" href="images/Figure4.png" target="_blank" rel="noreferrer">
+            <img src="images/Figure4.png" alt="Figure 4: Price levels over time (median with 10th/90th percentiles)." loading="lazy" />
+          </a>
+          <figcaption>
+            <div class="fighead">
+              <span class="figlabel">Figure 4</span>
+              <span class="figtitle">Price levels over time (median with 10th/90th percentiles)</span>
+            </div>
+            <p>
+              Prices rise across the distribution, but not uniformly: the 90th percentile increases more steeply than the median, especially in the later period. The widening gap between the upper tail and the center is consistent with a “top-end divergence” story, where luxury-market dynamics increasingly separate from the rest. Showing the 10th, 50th, and 90th percentiles together avoids collapsing very different market segments into one headline number.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure id="fig5" class="viz">
+          <a class="viz-link" href="images/Figure5.png" target="_blank" rel="noreferrer">
+            <img src="images/Figure5.png" alt="Figure 5: Flip incidence over time (resale within 2 years)." loading="lazy" />
+          </a>
+          <figcaption>
+            <div class="fighead">
+              <span class="figlabel">Figure 5</span>
+              <span class="figtitle">Flip incidence over time (flip_ind = resale within 2 years)</span>
+            </div>
+            <p>
+              The flip-share series is very low in the early 2000s, then rises sharply after 2010 and remains materially higher through the 2010s and early 2020s. The step-change is large enough to be substantively important, but it should be interpreted with care because the metric depends on linked prior-sale information (see Figure 1). Even with that caveat, the post-2010 regime looks qualitatively different from the pre-2010 period in terms of short-horizon resale activity.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure id="fig6" class="viz">
+          <a class="viz-link" href="images/Figure6.png" target="_blank" rel="noreferrer">
+            <img src="images/Figure6.png" alt="Figure 6: Investor presence over time (non-investor vs investor categories)." loading="lazy" />
+          </a>
+          <figcaption>
+            <div class="fighead">
+              <span class="figlabel">Figure 6</span>
+              <span class="figtitle">Investor presence over time (Non-investor vs investor categories)</span>
+            </div>
+            <p>
+              Investor purchase share rises from roughly one-fifth of transactions in the early 2000s to around one-third or more in much of the late 2010s, before easing in the early 2020s. The broad pattern aligns with Figure 5’s rise in short-horizon resales, suggesting a common structural shift rather than a one-off fluctuation in a single indicator. In other words, later years appear not just more expensive, but more investor-participatory.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure id="fig7" class="viz">
+          <a class="viz-link" href="images/Figure7.png" target="_blank" rel="noreferrer">
+            <img src="images/Figure7.png" alt="Figure 7: Share of purchases by LLCs or incorporated businesses." loading="lazy" />
+          </a>
+          <figcaption>
+            <div class="fighead">
+              <span class="figlabel">Figure 7</span>
+              <span class="figtitle">Share of purchases by LLCs or incorporated businesses</span>
+            </div>
+            <p>
+              Entity-buyer share increases from low single digits in the early 2000s to persistent double-digit levels after 2010, with a visible peak around the late 2010s. This is a narrower proxy than “investor” status because it highlights organizational buyers (e.g., LLCs/corporate entities) rather than individual investors. The upward trend supports a financialization interpretation in which a larger fraction of transactions is mediated by formal business entities over time.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure id="fig8" class="viz">
+          <a class="viz-link" href="images/Figure8.png" target="_blank" rel="noreferrer">
+            <img src="images/Figure8.png" alt="Figure 8: Holding time distribution for flips (<= 800 days)." loading="lazy" />
+          </a>
+          <figcaption>
+            <div class="fighead">
+              <span class="figlabel">Figure 8</span>
+              <span class="figtitle">Holding time distribution for flips (≤ 800 days)</span>
+            </div>
+            <p>
+              Among observed flips, holding times span the full sub-two-year window rather than clustering only at very short intervals, indicating that many flipped properties are held for months rather than days. The visible mass toward the upper end of the range is analytically important: “flip” here includes both rapid churn and longer short-hold strategies (potentially including renovation/repositioning cycles). This cautions against equating the flip indicator with only the most aggressive, immediate resale behavior.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure id="fig9" class="viz">
+          <a class="viz-link" href="images/Figure9.png" target="_blank" rel="noreferrer">
+            <img src="images/Figure9.png" alt="Figure 9: Spatial density of sales transactions (hexbin, Boston bounding box)." loading="lazy" />
+          </a>
+          <figcaption>
+            <div class="fighead">
+              <span class="figlabel">Figure 9</span>
+              <span class="figtitle">Spatial density of sales transactions (hexbin, Boston bounding box)</span>
+            </div>
+            <p>
+              The hexbin map shows a dense central cluster of transactions and a small number of clear spatial outliers far from the main mass. As an overview figure, this is both descriptive and diagnostic: it confirms that the data are concentrated in expected urban areas while also revealing coordinates that likely need filtering or cautious treatment. I use it as a “map sanity check” before making neighborhood-level spatial claims.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure id="fig10" class="viz">
+          <a class="viz-link" href="images/Figure10.png" target="_blank" rel="noreferrer">
+            <img src="images/Figure10.png" alt="Figure 10: Neighborhood contrasts—investor share vs price (size = sales volume)." loading="lazy" />
+          </a>
+          <figcaption>
+            <div class="fighead">
+              <span class="figlabel">Figure 10</span>
+              <span class="figtitle">Neighborhood contrasts: investor share vs price (size = sales volume)</span>
+            </div>
+            <p>
+              Investor share is elevated across several core neighborhoods, but the relationship with price is not strictly monotonic: some very expensive areas are investor-heavy, while some mid/high-price areas are similarly investor-heavy at much larger volumes. South Boston Waterfront stands out on price with relatively low volume, while neighborhoods like Back Bay and Downtown combine substantial volume with high investor participation. This suggests that “speculation geography” cannot be reduced to a single luxury-price ranking.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure id="fig11" class="viz">
+          <a class="viz-link" href="images/Figure11.png" target="_blank" rel="noreferrer">
+            <img src="images/Figure11.png" alt="Figure 11: Corporate ownership shifts by neighborhood (diagonal = no change)." loading="lazy" />
+          </a>
+          <figcaption>
+            <div class="fighead">
+              <span class="figlabel">Figure 11</span>
+              <span class="figtitle">Corporate ownership shifts by neighborhood (diagonal = no change)</span>
+            </div>
+            <p>
+              All plotted neighborhoods sit above the 45° line, indicating higher corporate ownership rates in 2024 than in 2004 across the board. The magnitude differs by neighborhood, but the direction is strikingly uniform, including strong increases in places such as South Boston Waterfront, Fenway, and Longwood. This is a strong stock-level signal that ownership structure has shifted citywide toward more corporate/entity holding.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure id="fig12" class="viz">
+          <a class="viz-link" href="images/Figure12.png" target="_blank" rel="noreferrer">
+            <img src="images/Figure12.png" alt="Figure 12: Owner-occupancy shifts by neighborhood (diagonal = no change)." loading="lazy" />
+          </a>
+          <figcaption>
+            <div class="fighead">
+              <span class="figlabel">Figure 12</span>
+              <span class="figtitle">Owner-occupancy shifts by neighborhood (diagonal = no change)</span>
+            </div>
+            <p>
+              Most neighborhoods lie below the diagonal, indicating lower owner-occupancy rates in 2024 than in 2004, with especially visible declines in several central neighborhoods (e.g., West End, North End, Fenway, Longwood). A few neighborhoods with low initial owner-occupancy appear to rise modestly, so the pattern is not perfectly uniform—but the dominant tendency is downward. Read together with Figure 11, the paired pattern is consequential: higher corporate ownership and lower owner occupancy co-occur across much of the city.
+            </p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
